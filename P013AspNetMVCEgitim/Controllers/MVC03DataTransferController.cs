@@ -18,12 +18,23 @@ namespace P013AspNetMVCEgitim.Controllers
             return View();
         }
         [HttpPost] //aşağıdaki metot post işlemide çalışsın
-        public IActionResult Index(string text1,string ddlListe, bool cbOnay)
+        public IActionResult Index(string text1,string ddlListe, bool cbOnay, IFormCollection formCollection)
         {
-            ViewBag.BirinciYontem = "1.Yöntemle(Parametrelerden gelen veriler)";
+            ViewBag.Yontem1 = "1.Yöntem(Parametrelerden gelen veriler)";
             ViewBag.Mesaj = "Textboxtan gelen veri : " +text1;
-            ViewBag.MesajListe = "ddlListeden gelen veri : " +ddlListe;
+            ViewData["MesajListe"] = "ddlListeden gelen veri : " +ddlListe;
             TempData["Tdata"] = "cbOnaydan gelen değer : " + cbOnay;
+
+            ViewBag.Yontem2 = "2.Yöntem(IFormCollection)";
+            ViewBag.Mesaj2 = "Textboxtan gelen veri : " + formCollection["text1"] ;
+            ViewData["MesajListe2"] = "ddlListeden gelen veri : " + formCollection["ddlListe"];
+            TempData["Tdata2"] = "cbOnaydan gelen değer : " + formCollection["cbOnay"][0];
+
+            ViewBag.Yontem3 = "3.Yöntem(RequestForm)";
+            ViewBag.Mesaj3 = "Textboxtan gelen veri : " + Request.Form["text1"];
+            ViewData["MesajListe3"] = "ddlListeden gelen veri : " + Request.Form["ddlListe"];
+            TempData["Tdata3"] = "cbOnaydan gelen değer : " + Request.Form["cbOnay"][0];
+
             return View();
         }
     }

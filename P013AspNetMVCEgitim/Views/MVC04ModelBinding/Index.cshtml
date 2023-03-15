@@ -1,0 +1,23 @@
+﻿
+@{
+}
+<h1>
+    Model Binding - Model Kullanımı
+</h1>
+
+<h3>Model Kullanım Adımları</h3>
+<ol>
+    <li>Models Klasörüne class ekleyip içine propertylerini tanımlıyoruz</li>
+    <li>Controller da bir action açıp sayfa oluşturduk</li>
+    <li>Sayfada model kullanabilmek için en üstte @@ işareti ve küçük harfle model class adını belirttik</li>
+    <li>Sayfada modeli kullanmak için büyük harfle Model yazıp . deyip classın propertylerine eriştik</li>
+    <li>Sayfada model kullandığımızda hata almamak için controllerdeki get metodunda model class ından bir nesne oluşturup view a yollamalıyız</li>
+</ol>
+
+<a asp-action="KullaniciDetay">
+    Kullanıcı Detay Sayfasına Git
+</a>
+<hr />
+<a asp-action="AdresDetay">
+    Adres Detay Sayfasına Git
+</a>
