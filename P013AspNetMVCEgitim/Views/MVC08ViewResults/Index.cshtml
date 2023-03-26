@@ -1,0 +1,51 @@
+﻿
+@{
+}
+<h1>
+    MVC View Results Çeşitleri
+</h1>
+<h4>
+    Redirect Result : Sayfayı bir url adresine yönlendirmeyi sağlar
+</h4>
+
+@Html.ActionLink("Redirect Result","Yonlendir")
+<a href="/MVC08ViewResults/Yonlendir?arananDeger=aspNetMvc">Query String</a>
+
+<h4>
+    Redirect To Action Result : Sayfayı bir actiona yönlendirmemizi sağlar 
+</h4>
+<a asp-action="ActionaYonlendir"> Redirect To Action</a>
+
+<h4>
+    Redirect To Route Result : Sayfayı bir route a yönlendirmemizi sağlar   
+</h4>
+<a asp-action="RouteYonlendir"> Redirect To Route</a>
+
+<h4>
+    Partial View Result : Actiona gelecek istek sonucunda geriye partial view döndürmeyi sağlar
+</h4>
+<a asp-action="KategorileriGetirPartial"> Partial View Result</a>
+
+<partial name="_KategorilerPartial" />
+
+<input type="button" value="Kategorileri Getir" class="btn btn-warning mt-2" id="btnKategorileriGetirPartial" />
+
+<br />
+<div id="Kategoriler"></div>
+
+@section scripts{
+
+    <script>
+        function KategorileriGetir(){
+            $.ajax({
+                url: "@Url.Action("KategorileriGetirPartial","MVC08ViewResults")",
+                type: "GET",
+                dataType: "html",
+                success: function(){
+
+                }
+            });
+        }
+    </script>
+
+}
