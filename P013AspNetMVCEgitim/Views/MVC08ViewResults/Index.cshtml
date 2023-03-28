@@ -36,16 +36,38 @@
 @section scripts{
 
     <script>
-        function KategorileriGetir(){
-            $.ajax({
-                url: "@Url.Action("KategorileriGetirPartial","MVC08ViewResults")",
-                type: "GET",
-                dataType: "html",
-                success: function(){
-
+        function KategorileriGetir() {
+            $.ajax({ // jquery nin ajax metoduyla uygulamaya istek göndereceğiz
+                url: "@Url.Action("KategorileriGetirPartial","MVC08ViewResults")", // uygulamada istek göndereceğimiz adres
+                type: "GET",// ajax isteğimizin türü
+                dataType: "html",// verilerin kullanılacağı tip html formatında
+                success: function (data) { // istek başarılı olursa
+                    $("#Kategoriler").html(data) // id si Kategoriler olan dive istek sonucu gelen ve data değişkeninde tutulan veriyi yaz
+                },
+                error: function () {
+                    alert("Hata Oluştu!")
                 }
             });
         }
+        $(function () {
+            $("#btnKategorileriGetirPartial").click(function () { // id si btnKategorileriGetirPartial olan butona tıklandığında
+                KategorileriGetir() // üstteki metodu çalıştır.
+            })
+        })
     </script>
 
 }
+
+<h4>
+    XmlContent Result : Actiona gelecek istek sonucunda geriye XmlContent döndürmeyi sağlar
+</h4>
+
+<a asp-action="XmlContentResult">XmlContent Result</a>
+
+<hr />
+
+<h4>
+    Json Result : Actiona gelecek istek sonucunda geriye Json döndürmeyi sağlar
+</h4>
+
+<a asp-action="JsonDondur">Json Result</a>

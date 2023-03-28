@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using P013AspNetMVCEgitim.Models;
 
 namespace P013AspNetMVCEgitim.Controllers
 {
@@ -18,17 +19,51 @@ namespace P013AspNetMVCEgitim.Controllers
         public IActionResult ActionaYonlendir()
         {
             //return RedirectToAction("Index"); //metot çalıştığında aynı controllerdaki bir actiona yönlendirmemizi sağlar
-            return RedirectToAction("Index","Home"); //metot çalıştığında farklı bir controllerdaki actiona bu şekilde yönlendirebiliriz
+            return RedirectToAction("Index", "Home"); //metot çalıştığında farklı bir controllerdaki actiona bu şekilde yönlendirebiliriz
         }
 
         public RedirectToRouteResult RouteYonlendir()  //IActionResult da kullanılabilir
         {
-            return RedirectToRoute("Default", new { controller="Home", action="Index", id="18" }); //metot çalıştığında route sistemiyle yönlendirme yapmamızı sağlar
+            return RedirectToRoute("Default", new { controller = "Home", action = "Index", id = "18" }); //metot çalıştığında route sistemiyle yönlendirme yapmamızı sağlar
         }
 
         public PartialViewResult KategorileriGetirPartial() // IActionResult da kullanılabilir
         {
             return PartialView("_KategorilerPartial");
+        }
+        public IActionResult XmlContentResult()
+        {
+            var xml = @"
+            <kullanicilar>
+               <kullanici>
+                <adi>
+                     Murat
+                </adi>
+                <Soyadi>
+                     Yılmaz
+                </Soyadi>
+               </kullanici>
+
+                 <kullanici>
+                <adi>
+                     Alp
+                </adi>
+                <Soyadi>
+                     Arslan
+                </Soyadi>
+               </kullanici>
+                
+            </kullanicilar>
+            ";
+            return Content(xml,"application/xml"); //geriye xml içeriği döndürdük
+        }
+        public IActionResult JsonDondur()
+        {
+            var kullanici = new Kullanici()
+            {
+                Ad ="Alp", Soyad ="Çakmak", KullaniciAdi ="alpi"
+            };
+            return Json(kullanici);
         }
 
     }
