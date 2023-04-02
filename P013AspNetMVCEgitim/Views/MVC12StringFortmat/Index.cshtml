@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "MVC12StringFortmat";
+    DateTime tarih = DateTime.Now;
+}
+
+<h1>MVC12 String Fortmat</h1>
+
+<p>
+    Ekranda gösterilen verileri formatlamak için kullanırız
+</p>
+
+<h3>
+    Tarih formatlama
+</h3>
+<h4>
+    Tarih : @tarih 
+</h4>
+
+<h5>
+    Kısa saat 0:t : @String.Format("{0:t}", tarih)
+</h5>
+<h5>
+    Kısa tarih 0:d : @String.Format("{0:d}", tarih)
+</h5>
+<h5>
+    Yıl 0:yyyy : @String.Format("{0:yyyy}", tarih)
+</h5>
+
+<h3>
+    Sayı Formatlama
+</h3>
+<h5>
+    Tl İşareti 0:C : @String.Format("{0:C}", 49.50)
+</h5>
+<h5>
+    Önüne 3 basamak olana kadar sıfır ekle 0:D3 : @String.Format("{0:D3}", 49)
+</h5>
+<h5>
+    Önüne 5 basamak olana kadar sıfır ekle 0:D5 : @String.Format("{0:D5}", 49)
+</h5>
+<h5>
+   Basamak Sayısı 0:F1 : @String.Format("{0:F2}", 15.96)
+</h5>
+<h5>
+    Basamak Sayısı 0:F1 : @String.Format("{0:F3}", 15.95)
+</h5>

@@ -7,6 +7,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<UyeContext>();    //bu satýrý sanal veri tabaný kullanabilmek için ekledik
 
+builder.Services.AddSession(); //uygulamada session kullanabilmek için bu satýrý ekliyoruz
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,11 +24,17 @@ app.UseStaticFiles(); //uygulama statik dosyalarý(wwwroot klasöründekiler) deste
 
 app.UseRouting(); //uygulama routing ile yönlendirmeyi kullansýn
 
+app.UseSession(); //uygulamada session kullanabilmek için bu satýrý ekliyoruz
+
 app.UseAuthentication(); //uygulam kullanýcý giriþ sistemini aktif etsin
 app.UseAuthorization(); //uygulama kullanýcý yetkilendime(admin, user) sistemini aktif etsin
 
 app.MapControllerRoute( //uygulamanýn kullanacaðý routing yönlendirme ayarý
     name: "default", //route adý
     pattern: "{controller=Home}/{action=Index}/{id?}"); // eðer adres çubuðundan uygulama bir controller adý ve action adý gönderilmezse varsayýlan olarak Home controlleri ve içindeki index isimli actioný çalýþtýrsýn. Id deðeri ise ? iþareti ile parametrik yani isteðe baðlý belirtilmiþ
+app.MapControllerRoute( // area nýn çalýþmasý için bu route ayarýný buraya ekledik.
+    name: "admin",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
 
 app.Run(); //uygulamayý yukarýdaki ayarlarý kullanarak çalýþtýr
